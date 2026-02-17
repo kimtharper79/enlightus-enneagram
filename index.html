@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Enneagram Assessment | EnlightUs Coaching</title>
+  <meta name="description" content="Discover your Enneagram type with this free assessment from EnlightUs Coaching. Understand your core motivations, strengths, and growth paths.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ======================== LANDING SCREEN ======================== -->
+  <section id="screen-landing" class="screen active">
+    <div class="landing-container">
+      <header class="landing-header">
+        <div class="brand">EnlightUs</div>
+        <span class="brand-sub">Coaching</span>
+      </header>
+
+      <div class="landing-content">
+        <h1>Discover Your<br>Enneagram Type</h1>
+        <p class="landing-description">
+          The Enneagram is a powerful framework for understanding your core motivations,
+          natural strengths, and growth edges. This brief assessment will help you identify
+          your primary type and begin your journey of self-awareness.
+        </p>
+        <div class="landing-details">
+          <div class="detail-item">
+            <span class="detail-icon">&#9672;</span>
+            <span>27 questions</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">&#9672;</span>
+            <span>~5 minutes</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">&#9672;</span>
+            <span>Personalized results</span>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="startAssessment()">Begin Assessment</button>
+        <p class="landing-credential">
+          Created by a Brown University Level 1 Certified Enneagram Coach
+        </p>
+      </div>
+
+      <div class="enneagram-symbol" aria-hidden="true">
+        <svg viewBox="0 0 200 200" width="200" height="200">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.3"/>
+          <!-- 9 points around the circle -->
+          <circle cx="100" cy="12" r="3" fill="var(--gold)" opacity="0.4"/>
+          <circle cx="163" cy="37" r="3" fill="var(--gold)" opacity="0.4"/>
+          <circle cx="188" cy="100" r="3" fill="var(--gold)" opacity="0.4"/>
+          <circle cx="163" cy="163" r="3" fill="var(--gold)" opacity="0.4"/>
+          <circle cx="100" cy="188" r="3" fill="var(--gold)" opacity="0.4"/>
+          <circle cx="37" cy="163" r="3" fill="var(--gold)" opacity="0.4"/>
+          <circle cx="12" cy="100" r="3" fill="var(--gold)" opacity="0.4"/>
+          <circle cx="37" cy="37" r="3" fill="var(--gold)" opacity="0.4"/>
+          <circle cx="100" cy="12" r="3" fill="var(--gold)" opacity="0.4"/>
+          <!-- Inner lines (simplified enneagram) -->
+          <polygon points="100,12 163,163 37,163" fill="none" stroke="var(--gold)" stroke-width="0.5" opacity="0.2"/>
+          <path d="M163,37 L37,163 L188,100 L37,37 L163,163 L12,100 Z" fill="none" stroke="var(--gold)" stroke-width="0.5" opacity="0.15"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== ASSESSMENT SCREEN ======================== -->
+  <section id="screen-assessment" class="screen">
+    <div class="assessment-container">
+      <header class="assessment-header">
+        <div class="brand-small">EnlightUs</div>
+        <div class="progress-info">
+          <span id="question-counter">1 of 27</span>
+        </div>
+      </header>
+
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+
+      <div class="question-area">
+        <p class="question-prompt" id="question-prompt">
+          Loading question...
+        </p>
+        <div class="answer-options" id="answer-options">
+          <!-- Options injected by JS -->
+        </div>
+      </div>
+
+      <div class="assessment-nav">
+        <button class="btn-back" id="btn-back" onclick="prevQuestion()" disabled>
+          &#8592; Back
+        </button>
+        <button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>
+          Next &#8594;
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== EMAIL GATE SCREEN ======================== -->
+  <section id="screen-email" class="screen">
+    <div class="email-container">
+      <header class="email-header">
+        <div class="brand-small">EnlightUs</div>
+      </header>
+
+      <div class="email-content">
+        <div class="completion-badge">&#10003;</div>
+        <h2>Assessment Complete!</h2>
+        <p class="email-description">
+          Your Enneagram profile is ready. Enter your email to receive your
+          personalized results, along with insights on your core motivations,
+          strengths, and growth path.
+        </p>
+
+        <form id="email-form" onsubmit="submitEmail(event)">
+          <div class="form-group">
+            <input
+              type="text"
+              id="input-name"
+              placeholder="First name"
+              required
+              autocomplete="given-name"
+            >
+          </div>
+          <div class="form-group">
+            <input
+              type="email"
+              id="input-email"
+              placeholder="Email address"
+              required
+              autocomplete="email"
+            >
+          </div>
+          <button type="submit" class="btn-primary" id="btn-submit-email">
+            Reveal My Results
+          </button>
+          <p class="email-privacy">
+            We respect your privacy. Unsubscribe anytime.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== RESULTS SCREEN ======================== -->
+  <section id="screen-results" class="screen">
+    <div class="results-container">
+      <header class="results-header">
+        <div class="brand-small">EnlightUs</div>
+      </header>
+
+      <div class="results-content">
+        <p class="results-label">Your primary Enneagram type is</p>
+        <div class="results-type">
+          <span class="type-number" id="result-type-number">1</span>
+          <h2 class="type-name" id="result-type-name">The Reformer</h2>
+        </div>
+
+        <div class="type-description" id="result-type-description">
+          <!-- Injected by JS -->
+        </div>
+
+        <div class="type-scores" id="type-scores">
+          <!-- Score breakdown injected by JS -->
+        </div>
+
+        <div class="results-cta">
+          <h3>Want to go deeper?</h3>
+          <p>
+            Work with a certified Enneagram coach to explore your type in depth —
+            your wings, subtypes, stress and growth patterns, and how to leverage
+            your Enneagram insights for personal and professional growth.
+          </p>
+          <a href="https://www.enlightuscoaching.com" class="btn-primary" target="_blank" rel="noopener">
+            Book a Session
+          </a>
+          <button class="btn-secondary" onclick="retakeAssessment()">
+            Retake Assessment
+          </button>
+        </div>
+      </div>
+
+      <footer class="results-footer">
+        <p>&copy; EnlightUs Coaching &middot; Brown University Level 1 Certified Enneagram Coach</p>
+      </footer>
+    </div>
+  </section>
+
+  <script src="js/questions.js"></script>
+  <script src="js/types.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
