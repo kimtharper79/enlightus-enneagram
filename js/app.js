@@ -153,7 +153,7 @@ async function submitEmail(e) {
  * 3. Replace MAILCHIMP_URL below with your form action URL
  * 4. Optional: Add merge tags in Mailchimp for ETYPE (text) and ESCORE (text) to capture results
  */
-const MAILCHIMP_URL = ''; // <-- PASTE YOUR MAILCHIMP FORM ACTION URL HERE
+const MAILCHIMP_URL = 'https://tanyacoluccimfr.us19.list-manage.com/subscribe/post?u=2c01b8be8ff3a0fa541f65ccf&id=d7c4b1bc83&f_id=00e355e7f0';
 
 async function submitToMailchimp(name, email, topType, scores) {
   if (!MAILCHIMP_URL) {
